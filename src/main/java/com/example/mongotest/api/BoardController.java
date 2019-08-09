@@ -76,7 +76,7 @@ public class BoardController {
     @DeleteMapping("/mongo")
     public ResponseEntity mongotest2() {
         com.example.mongotest.model.Board board1 = new com.example.mongotest.model.Board();
-        board1.setContentIdx(1);
+        board1.setContentIdx(1);// 뭘 지울지 기준을 준다.
         mongoRepository.delete(board1);
         return null;
 

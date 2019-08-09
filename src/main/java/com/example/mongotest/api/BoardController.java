@@ -7,6 +7,7 @@ import com.example.mongotest.model.DefaultRes;
 import com.example.mongotest.model.Test;
 import com.example.mongotest.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +19,10 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    public BoardController(BoardService boardService) {
+    private final MongoRepository mongoRepository;
+    public BoardController(BoardService boardService, MongoRepository mongoRepository) {
         this.boardService = boardService;
+        this.mongoRepository = mongoRepository;
     }
 
 
@@ -56,7 +59,7 @@ public class BoardController {
             return new ResponseEntity<>(ISR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/test")
+    @PostMapping("/mongo")
     public ResponseEntity test(Test test, @RequestPart(value ="profile",required = false) MultipartFile profile) {
         if(profile != null) test.setProfile(profile);
         return new ResponseEntity<>(boardService.test(test), HttpStatus.OK);

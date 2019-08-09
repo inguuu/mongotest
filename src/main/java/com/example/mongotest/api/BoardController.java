@@ -59,10 +59,42 @@ public class BoardController {
             return new ResponseEntity<>(ISR, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    //====
     @PostMapping("/mongo")
-    public ResponseEntity test(Test test, @RequestPart(value ="profile",required = false) MultipartFile profile) {
-        if(profile != null) test.setProfile(profile);
-        return new ResponseEntity<>(boardService.test(test), HttpStatus.OK);
+    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+
+        log.info("====================="+board.getTitle());
+        mongoRepository.save(board);
+        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
+        return new ResponseEntity<>(sm, HttpStatus.OK);
+
+    }
+    @DeleteMapping("/mongo")
+    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+
+        log.info("====================="+board.getTitle());
+        mongoRepository.save(board);
+        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
+        return new ResponseEntity<>(sm, HttpStatus.OK);
+
+    }
+    @PostMapping("/mongo")
+    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+
+        log.info("====================="+board.getTitle());
+        mongoRepository.save(board);
+        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
+        return new ResponseEntity<>(sm, HttpStatus.OK);
+
+    }
+    @PostMapping("/mongo")
+    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+
+        log.info("====================="+board.getTitle());
+        mongoRepository.save(board);
+        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
+        return new ResponseEntity<>(sm, HttpStatus.OK);
 
     }
 

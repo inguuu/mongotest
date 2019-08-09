@@ -6,6 +6,7 @@ import com.example.mongotest.model.BoardReq;
 import com.example.mongotest.model.DefaultRes;
 import com.example.mongotest.model.Test;
 import com.example.mongotest.service.BoardService;
+import com.example.mongotest.service.S3FileUploadService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

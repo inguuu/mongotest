@@ -7,6 +7,7 @@ import com.example.mongotest.model.DefaultRes;
 import com.example.mongotest.model.Test;
 import com.example.mongotest.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +61,9 @@ public class BoardController {
         }
     }
 
-    //====
+    //==== TEST MONGO
+
+
     @PostMapping("/mongo")
     public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
 
@@ -71,30 +74,23 @@ public class BoardController {
 
     }
     @DeleteMapping("/mongo")
-    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+    public ResponseEntity mongotest2() {
 
-        log.info("====================="+board.getTitle());
-        mongoRepository.save(board);
-        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
+        return null;
+
+    }
+    @GetMapping("/mongo")
+    public ResponseEntity mongotest3() {
+
+      Iterable<com.example.mongotest.model.Board> boardlist = mongoRepository.findAll();
+        DefaultRes<Iterable<com.example.mongotest.model.Board>> sm = new DefaultRes<Iterable<com.example.mongotest.model.Board>>(HttpStatus.OK.value(),"성공",boardlist );
         return new ResponseEntity<>(sm, HttpStatus.OK);
 
     }
-    @PostMapping("/mongo")
-    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
+    @PutMapping("/mongo")
+    public ResponseEntity mongotest4(){
+        return null;
 
-        log.info("====================="+board.getTitle());
-        mongoRepository.save(board);
-        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
-        return new ResponseEntity<>(sm, HttpStatus.OK);
-
-    }
-    @PostMapping("/mongo")
-    public ResponseEntity mongotest(@RequestBody com.example.mongotest.model.Board board) {
-
-        log.info("====================="+board.getTitle());
-        mongoRepository.save(board);
-        DefaultRes<Board> sm = new DefaultRes<>(HttpStatus.OK,"성공" );
-        return new ResponseEntity<>(sm, HttpStatus.OK);
 
     }
 
